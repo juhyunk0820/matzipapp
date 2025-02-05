@@ -6,18 +6,10 @@
  */
 
 import RootNavigator from '@/navigations/root/RootNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {
-  useColorScheme,
-  View,
-} from 'react-native';
-
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-
   return (
     <NavigationContainer>
       <RootNavigator />
