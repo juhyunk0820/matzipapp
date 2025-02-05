@@ -1,10 +1,26 @@
-import React from "react"
-import { View } from "react-native"
+import {authNavigations} from '@/constants/navigation';
+import AuthHomeScreen from '../../screens/Auth/AuthHomeScreen';
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import {View} from 'react-native';
+
+export type AuthStackParamList = {
+  [authNavigations.AUTH_HOME]: undefined;
+  [authNavigations.AUTH_LOGIN]: undefined;
+  [authNavigations.AUTH_SIGNUP]: undefined;
+};
+
+const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthStackNavigator() {
-    return(
-        <View></View>
-    )
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={authNavigations.AUTH_HOME}
+        component={AuthHomeScreen}
+      />
+    </Stack.Navigator>
+  );
 }
 
-export default AuthStackNavigator
+export default AuthStackNavigator;
