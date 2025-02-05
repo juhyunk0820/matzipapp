@@ -1,4 +1,4 @@
-import {authNavigations} from '@/constants/navigation';
+import {authNavigations} from '@/constants/navigations';
 import AuthHomeScreen from '../../screens/Auth/AuthHomeScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
