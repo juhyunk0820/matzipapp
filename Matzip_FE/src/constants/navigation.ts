@@ -1,7 +1,0 @@
-const authNavigations = {
-  AUTH_HOME: 'AuthHome',
-  AUTH_LOGIN: 'AuthLogin',
-  AUTH_SIGNUP: 'AuthSignup',
-} as const;
-
-export {authNavigations};
