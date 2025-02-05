@@ -5,6 +5,7 @@
  * @format
  */
 
+import RootNavigator from '@/navigations/root/RootNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
@@ -20,16 +21,9 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <View style={styles.container}></View>
+      <RootNavigator />
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-});
 
 export default App;
