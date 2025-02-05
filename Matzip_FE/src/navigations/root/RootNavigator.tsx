@@ -1,11 +1,11 @@
-import React from "react"
-import MainDrawerNavigator from "@/navigations/drawer/MainDrawerNavigator"
-import AuthStackNavigator from "@/navigations/stack/AuthStackNavigator"
+import React from 'react';
+import MainDrawerNavigator from '@/navigations/drawer/MainDrawerNavigator';
+import AuthStackNavigator from '@/navigations/stack/AuthStackNavigator';
 
 function RootNavigator() {
-    const isLogin = true
+  const isLogin = false;
 
-    return <>{isLogin ? <MainDrawerNavigator /> : <AuthStackNavigator />}</>
+  return <>{isLogin ? <MainDrawerNavigator /> : <AuthStackNavigator />}</>;
 }
 
-export default RootNavigator
+export default RootNavigator;
