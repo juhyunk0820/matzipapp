@@ -9,7 +9,6 @@ import RootNavigator from '@/navigations/root/RootNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
-  StyleSheet,
   useColorScheme,
   View,
 } from 'react-native';
