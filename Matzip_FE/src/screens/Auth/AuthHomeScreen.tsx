@@ -1,59 +1,51 @@
 import React from 'react';
-import {AuthStackParamList} from '@/navigations/stack/AuthStackNavigator';
 import {StackScreenProps} from '@react-navigation/stack';
-import {authNavigations} from '@/constants/navigations';
-import {
-  Dimensions,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import CustomButton from '@/components/CustomButton';
+import {Dimensions, Image, SafeAreaView, StyleSheet, View} from 'react-native';
 
-type AuthScreenProps = StackScreenProps<
+import {AuthStackParamList} from '@/navigations/stack/AuthStackNavigator';
+import CustomButton from '@/components/CustomButton';
+import {authNaviagtions} from '@/constants';
+
+type AuthHomeScreenProps = StackScreenProps<
   AuthStackParamList,
-  typeof authNavigations.AUTH_HOME
+  typeof authNaviagtions.AUTH_HOME
 >;
 
-const deviceWidth = Dimensions.get('screen').width;
-
-const AuthHomeScreen = ({navigation}: AuthScreenProps) => {
+function AuthHomeScreen({navigation}: AuthHomeScreenProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
           resizeMode="contain"
           style={styles.image}
-          source={require('@/assets/MATZIP.png')}
+          source={require('@/assets/matzip.png')}
         />
       </View>
       <View style={styles.buttonContainer}>
         <CustomButton
-          label="로그인"
-          onPress={() => navigation.navigate(authNavigations.AUTH_LOGIN)}
+          label="로그인하기"
+          onPress={() => navigation.navigate(authNaviagtions.LOGIN)}
         />
         <CustomButton
-          label="회원가입"
+          label="회원가입하기"
           variant="outlined"
-          onPress={() => navigation.navigate(authNavigations.AUTH_SIGNUP)}
+          onPress={() => navigation.navigate(authNaviagtions.SIGNUP)}
         />
       </View>
     </SafeAreaView>
   );
-};
-
-export default AuthHomeScreen;
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    marginHorizontal: 30,
+    marginVertical: 30,
   },
   imageContainer: {
     flex: 1.5,
-    width: deviceWidth / 2,
+    width: Dimensions.get('screen').width / 2,
   },
   image: {
     width: '100%',
@@ -61,7 +53,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    padding: 30,
+    alignItems: 'center',
     gap: 10,
   },
 });
+
+export default AuthHomeScreen;

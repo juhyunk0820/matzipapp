@@ -1,19 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import RootNavigator from '@/navigations/root/RootNavigator';
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {QueryClientProvider} from '@tanstack/react-query';
 
-function App(): React.JSX.Element {
+import RootNavigator from './src/navigations/root/RootNavigator';
+import queryClient from './src/api/queryClient';
+
+function App() {
   return (
-    <NavigationContainer>
-      <RootNavigator />
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
 
