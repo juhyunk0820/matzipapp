@@ -72,61 +72,7 @@ const mapStyle = [
     ],
   },
   {
-    featureType: 'road.arterial',
-    elementType: 'labels.text.fill',
-    stylers: [
-      {
-        color: '#ffc7ea',
-      },
-    ],
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'geometry.fill',
-    stylers: [
-      {
-        color: '#e3e3e3',
-      },
-    ],
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'geometry.stroke',
-    stylers: [
-      {
-        color: '#bfbfbf',
-      },
-    ],
-  },
-  {
-    featureType: 'road.local',
-    elementType: 'labels.text',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'road.local',
-    elementType: 'labels.text.fill',
-    stylers: [
-      {
-        color: '#ffa3dd',
-      },
-    ],
-  },
-  {
-    featureType: 'road.local',
-    elementType: 'labels.text.stroke',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
-    featureType: 'transit.station.bus',
+    featureType: 'transit.station',
     elementType: 'labels.icon',
     stylers: [
       {
@@ -136,7 +82,7 @@ const mapStyle = [
   },
   {
     featureType: 'transit.station.bus',
-    elementType: 'labels.text',
+    elementType: 'labels.icon',
     stylers: [
       {
         visibility: 'off',
