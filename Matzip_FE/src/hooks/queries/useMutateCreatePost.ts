@@ -31,7 +31,7 @@ function useMutateCreatePost(mutationOptions?: UseMutationCustomOptions) {
       // queryClient.invalidateQueries({
       //   queryKey: [queryKeys.MARKER, queryKeys.GET_MARKERS],
       // });
-
+      console.log('createPost Success');
       queryClient.setQueryData<Marker[]>(
         [queryKeys.MARKER, queryKeys.GET_MARKERS],
         existingMarkers => {
