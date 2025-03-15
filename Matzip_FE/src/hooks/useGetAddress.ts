@@ -11,7 +11,7 @@ function useGetAddress(location: LatLng) {
     (async () => {
       try {
         const {data} = await axios.get(
-          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=street_address|route|political&key=AIzaSyD30G2DIRx_c73iPAegAi7OWSiV1jdZzkw&language=ko`,
+          `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&result_type=street_address|route|political&key=AIzaSyAYYhxz8PvPSi8C25VAa7yOwhHrCAZR0zU&language=ko`,
         );
         const address = data.results.length
           ? data.results[0].formatted_address
