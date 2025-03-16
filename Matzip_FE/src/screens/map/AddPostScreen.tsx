@@ -57,11 +57,16 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       score,
       imageUris: [],
     };
-    createPost.mutate({
-      address,
-      ...location,
-      ...body,
-    });
+    createPost.mutate(
+      {
+        address,
+        ...location,
+        ...body,
+      },
+      {
+        onSuccess: () => navigation.goBack(),
+      },
+    );
     // createPost.mutate(
     //   {address, ...location, ...body},
     //   {
@@ -73,11 +78,8 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => AddPostHeaderRight(handleSubmit),
-      headerRightContainerStyle: {
-        right: -20,
-      },
     });
-  }, []);
+  }, [handleSubmit, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -97,7 +99,6 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
             error={addPost.errors.title}
             touched={addPost.touched.title}
             returnKeyType="next"
-            blurOnSubmit={false}
             onSubmitEditing={() => descriptionRef.current?.focus()}
             {...addPost.getTextInputProps('title')}
           />
