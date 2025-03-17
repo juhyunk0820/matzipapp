@@ -1,24 +1,26 @@
-import AddPostHeaderRight from '@/components/AddPostHeaderRight';
-import CustomButton from '@/components/CustomButton';
-import InputField from '@/components/InputField';
-import {colors, mapNavigations} from '@/constants';
-import useMutateCreatePost from '@/hooks/queries/useMutateCreatePost';
-import useForm from '@/hooks/useForm';
-import useGetAddress from '@/hooks/useGetAddress';
-import {MapStackParamList} from '@/navigations/stack/MapStackNavigator';
-import {MarkerColor} from '@/types';
-import {validateAddPost} from '@/utils';
-import {StackScreenProps} from '@react-navigation/stack';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from 'react-native';
+import {StackScreenProps} from '@react-navigation/stack';
 import Octicons from 'react-native-vector-icons/Octicons';
+
+import {MapStackParamList} from '@/navigations/stack/MapStackNavigator';
+import {colors, mapNavigations} from '@/constants';
+import InputField from '@/components/InputField';
+import CustomButton from '@/components/CustomButton';
+import useForm from '@/hooks/useForm';
+import {validateAddPost} from '@/utils';
+import useMutateCreatePost from '@/hooks/queries/useMutateCreatePost';
+import {MarkerColor} from '@/types';
+import AddPostHeaderRight from '@/components/AddPostHeaderRight';
+import useGetAddress from '@/hooks/useGetAddress';
+import MarkerSelector from '@/components/MarkerSelector';
+import ScoreInput from '@/components/ScoreInput';
 
 type AddPostScreenProps = StackScreenProps<
   MapStackParamList,
@@ -57,22 +59,13 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       score,
       imageUris: [],
     };
+
     createPost.mutate(
-      {
-        address,
-        ...location,
-        ...body,
-      },
+      {address, ...location, ...body},
       {
         onSuccess: () => navigation.goBack(),
       },
     );
-    // createPost.mutate(
-    //   {address, ...location, ...body},
-    //   {
-    //     onSuccess: () => navigation.goBack(),
-    //   },
-    // );
   };
 
   useEffect(() => {
@@ -86,39 +79,45 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       <ScrollView style={styles.contentContainer}>
         <View style={styles.inputContainer}>
           <InputField
-            value=""
-            disabled
+            value={address}
+            disabled={true}
             icon={
               <Octicons name="location" size={16} color={colors.GRAY_500} />
             }
           />
-          <CustomButton label="날짜 선택" variant="outlined" size="large" />
+          <CustomButton variant="outlined" size="large" label={'날짜 선택'} />
           <InputField
-            autoFocus
-            placeholder="제목을 입력하세요"
+            {...addPost.getTextInputProps('title')}
             error={addPost.errors.title}
             touched={addPost.touched.title}
+            placeholder="제목을 입력하세요."
             returnKeyType="next"
-            onSubmitEditing={() => descriptionRef.current?.focus()}
-            {...addPost.getTextInputProps('title')}
+            blurOnSubmit={false}
+            onSubmitEditing={() => {
+              descriptionRef.current?.focus();
+            }}
           />
           <InputField
-            ref={descriptionRef}
-            placeholder="기록하고 싶은 내용을 입력하세요(선택)"
+            {...addPost.getTextInputProps('description')}
             error={addPost.errors.description}
             touched={addPost.touched.description}
-            secureTextEntry
+            ref={descriptionRef}
+            placeholder="기록하고 싶은 내용을 입력하세요. (선택)"
             returnKeyType="next"
             multiline
-            {...addPost.getTextInputProps('description')}
           />
+          <MarkerSelector
+            coordinate={location}
+            score={score}
+            markerColor={markerColor}
+            onPressMarker={handleSelectMarker}
+          />
+          <ScoreInput score={score} onChangeScore={handleChangeScore} />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-export default AddPostScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -134,3 +133,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+export default AddPostScreen;
