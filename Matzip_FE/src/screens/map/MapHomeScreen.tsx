@@ -54,6 +54,8 @@ function MapHomeScreen() {
       location: selectLocation,
     });
     setSelectLocation(null);
+    console.log('Done');
+    console.log(selectLocation);
   };
 
   const handlePressUserLocation = () => {
