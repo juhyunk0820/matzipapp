@@ -5,11 +5,6 @@ import {LatLng, Marker, MapMarkerProps} from 'react-native-maps';
 import {colors} from '@/constants';
 import {MarkerColor} from '@/types';
 
-// interface CustomMarkerProps extends MapMarkerProps {
-//   coordinate?: LatLng;
-//   color: MarkerColor;
-//   score?: number;
-// }
 interface CustomMarkerProps extends MapMarkerProps {
   coordinate: LatLng;
   color: MarkerColor;
