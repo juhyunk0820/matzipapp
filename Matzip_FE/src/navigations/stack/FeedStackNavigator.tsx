@@ -35,6 +35,17 @@ function FeedStackNavigator() {
           headerLeft: () => FeedHomeHeaderLeft(navigation),
         })}
       />
+      {/* <Stack.Screen
+        name={feedNavigations.FEED_HOME}
+        component={FeedHomeScreen}
+        options={({navigation}) => ({
+          headerTitle: '피드',
+          headerLeft: () => {
+            const drawerNavigation = navigation.getParent()!; // non-null assertion
+            return FeedHomeHeaderLeft(drawerNavigation);
+          },
+        })}
+      /> */}
     </Stack.Navigator>
   );
 }
