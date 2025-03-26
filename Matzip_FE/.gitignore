@@ -74,4 +74,8 @@ yarn-error.log
 !.yarn/versions
 
 #의존성
+# react-native-config codegen
+ios/tmp.xcconfig
 node_modules
+
+.env

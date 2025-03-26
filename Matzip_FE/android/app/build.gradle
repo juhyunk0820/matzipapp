@@ -84,6 +84,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue "string", "build_config_package", "com.matzip_fe"
         vectorDrawables.useSupportLibrary = true //image crop picker library
     }
     signingConfigs {
@@ -118,3 +119,4 @@ dependencies {
         implementation jscFlavor
     }
 }
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
