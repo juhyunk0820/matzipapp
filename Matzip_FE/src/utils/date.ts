@@ -15,4 +15,4 @@ function getDateWithSeparator(
   ].join(separator);
 }
 
-export default getDateWithSeparator;
+export {getDateWithSeparator};
