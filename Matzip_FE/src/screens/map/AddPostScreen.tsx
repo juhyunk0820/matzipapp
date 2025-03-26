@@ -23,7 +23,7 @@ import useGetAddress from '@/hooks/useGetAddress';
 import MarkerSelector from '@/components/MarkerSelector';
 import ScoreInput from '@/components/ScoreInput';
 import DatePickerOption from '@/components/DatePickerOption';
-import getDateWithSeparator from '@/utils/date';
+import {getDateWithSeparator} from '@/utils';
 import useModal from '@/hooks/useModal';
 import usePermission from '@/hooks/usePermission';
 import useImagePicker from '@/hooks/useImagePicker';
@@ -82,7 +82,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       description: addPost.values.description,
       color: markerColor,
       score,
-      imageUris: [],
+      imageUris: imagePicker.imageUris,
     };
 
     createPost.mutate(
