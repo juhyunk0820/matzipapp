@@ -18,11 +18,11 @@ import {MapStackParamList} from '@/navigations/stack/MapStackNavigator';
 import {MainDrawerParamList} from '@/navigations/drawer/MainDrawerNavigator';
 import useUserLocation from '@/hooks/useUserLocation';
 import usePermission from '@/hooks/usePermission';
-import CustomMarker from '@/components/CustomMarker';
+import CustomMarker from '@/components/common/CustomMarker';
 import mapStyle from '@/style/mapStyle';
 import {alerts, colors, mapNavigations} from '@/constants';
 import useGetMarkers from '@/hooks/queries/useGetMarkers';
-import MarkerModal from '@/components/MarkerModal';
+import MarkerModal from '@/components/map/MarkerModal';
 import useModal from '@/hooks/useModal';
 
 type Navigation = CompositeNavigationProp<
