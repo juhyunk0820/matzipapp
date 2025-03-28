@@ -21,7 +21,7 @@ import {MarkerColor} from '@/types';
 import AddPostHeaderRight from '@/components/post/AddPostHeaderRight';
 import useGetAddress from '@/hooks/useGetAddress';
 import MarkerSelector from '@/components/post/MarkerSelector';
-import ScoreInput from '@/components/ScoreInput';
+import ScoreInput from '@/components/post/ScoreInput';
 import DatePickerOption from '@/components/post/DatePickerOption';
 import {getDateWithSeparator} from '@/utils';
 import useModal from '@/hooks/useModal';
