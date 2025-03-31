@@ -94,7 +94,9 @@ function PostForm({isEdit, location}: PostFormProps) {
       score,
       imageUris: imagePicker.imageUris,
     };
-
+    if (isEditMode) {
+      //업데이트 작업
+    }
     createPost.mutate(
       {address, ...location, ...body},
       {
