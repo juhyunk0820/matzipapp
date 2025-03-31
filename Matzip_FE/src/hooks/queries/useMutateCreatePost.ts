@@ -1,22 +1,3 @@
-// import {createPost} from '@/api';
-// import queryClient from '@/api/queryClient';
-// import {queryKeys} from '@/constants';
-// import {UseMutationCustomOptions} from '@/types';
-// import {useMutation} from '@tanstack/react-query';
-
-// function useMuateCreatePost(mutationOptions?: UseMutationCustomOptions) {
-//   return useMutation({
-//     mutationFn: createPost,
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({
-//         queryKey: [queryKeys.MARKER, queryKeys.GET_MARKERS],
-//       });
-//     },
-//     ...mutationOptions,
-//   });
-// }
-
-// export default useMuateCreatePost;
 import {useMutation} from '@tanstack/react-query';
 
 import {createPost} from '@/api/post';
@@ -28,10 +9,10 @@ function useMutateCreatePost(mutationOptions?: UseMutationCustomOptions) {
   return useMutation({
     mutationFn: createPost,
     onSuccess: newPost => {
-      // queryClient.invalidateQueries({
-      //   queryKey: [queryKeys.MARKER, queryKeys.GET_MARKERS],
-      // });
-      console.log('createPost Success');
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.POST, queryKeys.GET_POSTS],
+      });
+
       queryClient.setQueryData<Marker[]>(
         [queryKeys.MARKER, queryKeys.GET_MARKERS],
         existingMarkers => {
