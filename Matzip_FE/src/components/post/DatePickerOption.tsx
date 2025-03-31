@@ -1,4 +1,3 @@
-import {colors} from '@/constants';
 import React from 'react';
 import {
   Modal,
@@ -9,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import DatePicker from 'react-native-date-picker';
+import {colors} from '@/constants';
 
 interface DatePickerOptionProps {
   isVisible: boolean;
@@ -24,8 +24,8 @@ function DatePickerOption({
   onConfirmDate,
 }: DatePickerOptionProps) {
   return (
-    <Modal visible={isVisible} transparent animationType="slide">
-      <SafeAreaView style={styles.optionBackground}>
+    <Modal visible={isVisible} transparent={true} animationType={'slide'}>
+      <SafeAreaView style={[styles.optionBackground, styles.dimmed]}>
         <View style={styles.optionContainer}>
           <View style={styles.pickerContainer}>
             <DatePicker
@@ -36,10 +36,8 @@ function DatePickerOption({
             />
           </View>
         </View>
-        <View>
-          <Pressable
-            style={styles.optionButton}
-            onPress={() => onConfirmDate()}>
+        <View style={styles.optionContainer}>
+          <Pressable style={styles.optionButton} onPress={onConfirmDate}>
             <Text style={styles.optionText}>확인</Text>
           </Pressable>
         </View>
@@ -48,13 +46,16 @@ function DatePickerOption({
   );
 }
 
-export default DatePickerOption;
-
 const styles = StyleSheet.create({
+  pickerContainer: {
+    alignItems: 'center',
+  },
   optionBackground: {
     flex: 1,
-    backgroundColor: 'rgba(0 0 0 / 0.5)',
     justifyContent: 'flex-end',
+  },
+  dimmed: {
+    backgroundColor: 'rgba(0 0 0 / 0.5)',
   },
   optionContainer: {
     borderRadius: 15,
@@ -63,19 +64,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.GRAY_100,
     overflow: 'hidden',
   },
-  pickerContainer: {
-    alignItems: 'center',
-  },
   optionButton: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     height: 50,
     gap: 5,
   },
   optionText: {
+    fontSize: 17,
     color: colors.BLUE_500,
-    fontSize: 18,
     fontWeight: '500',
   },
 });
+
+export default DatePickerOption;
