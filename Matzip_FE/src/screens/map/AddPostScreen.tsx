@@ -41,8 +41,6 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
   const descriptionRef = useRef<TextInput | null>(null);
   const createPost = useMutateCreatePost();
   const address = useGetAddress(location);
-  const [date, setDate] = useState(new Date());
-  const dateOptions = useModal();
   const addPost = useForm({
     initialValue: {
       title: '',
@@ -50,9 +48,11 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
     },
     validate: validateAddPost,
   });
+  const datePickerModal = useModal();
+  const [date, setDate] = useState(new Date());
+  const [isPicked, setIsPicked] = useState(false);
   const [markerColor, setMarkerColor] = useState<MarkerColor>('RED');
   const [score, setScore] = useState(5);
-  const [isPicked, setIsPicked] = useState(false);
   const imagePicker = useImagePicker({
     initialImages: [],
   });
@@ -64,7 +64,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
 
   const handleConfirmDate = () => {
     setIsPicked(true);
-    dateOptions.hide();
+    datePickerModal.hide();
   };
 
   const handleSelectMarker = (name: MarkerColor) => {
@@ -77,7 +77,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
 
   const handleSubmit = () => {
     const body = {
-      date: date,
+      date,
       title: addPost.values.title,
       description: addPost.values.description,
       color: markerColor,
@@ -114,7 +114,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
             variant="outlined"
             size="large"
             label={isPicked ? getDateWithSeparator(date, '. ') : '날짜 선택'}
-            onPress={dateOptions.show}
+            onPress={datePickerModal.show}
           />
           <InputField
             {...addPost.getTextInputProps('title')}
@@ -153,7 +153,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
           </View>
           <DatePickerOption
             date={date}
-            isVisible={dateOptions.isVisible}
+            isVisible={datePickerModal.isVisible}
             onChangeDate={handleChangeDate}
             onConfirmDate={handleConfirmDate}
           />
