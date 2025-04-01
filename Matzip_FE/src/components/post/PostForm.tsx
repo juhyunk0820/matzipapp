@@ -34,6 +34,7 @@ import {LatLng} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 import {FeedStackParamList} from '@/navigations/stack/FeedStackNavigator';
 import useDetailStore from '@/store/useDetailPostStore';
+import useMutateUpdatePost from '@/hooks/queries/useMutateUpdatePost';
 
 interface PostFormProps {
   isEdit?: boolean;
@@ -44,6 +45,7 @@ function PostForm({isEdit, location}: PostFormProps) {
   const navigation = useNavigation<StackNavigationProp<FeedStackParamList>>();
   const descriptionRef = useRef<TextInput | null>(null);
   const createPost = useMutateCreatePost();
+  const updatePost = useMutateUpdatePost();
   const {detailPost} = useDetailStore();
   const isEditMode = isEdit && detailPost;
   const address = useGetAddress(location);
@@ -96,6 +98,16 @@ function PostForm({isEdit, location}: PostFormProps) {
     };
     if (isEditMode) {
       //업데이트 작업
+      updatePost.mutate(
+        {
+          id: detailPost.id,
+          body,
+        },
+        {
+          onSuccess: () => navigation.goBack(),
+        },
+      );
+      return;
     }
     createPost.mutate(
       {address, ...location, ...body},
@@ -125,7 +137,11 @@ function PostForm({isEdit, location}: PostFormProps) {
           <CustomButton
             variant="outlined"
             size="large"
-            label={isPicked ? getDateWithSeparator(date, '. ') : '날짜 선택'}
+            label={
+              isPicked || isEdit
+                ? getDateWithSeparator(date, '. ')
+                : '날짜 선택'
+            }
             onPress={datePickerModal.show}
           />
           <InputField
