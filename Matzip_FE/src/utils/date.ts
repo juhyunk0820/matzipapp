@@ -32,14 +32,18 @@ function getMonthYearDetails(initialDate: Date) {
   const startDate = new Date(`${year}-${month}`);
   const firstDOW = startDate.getDay();
   const lastDateString = String(
-    new Date(initialDate.getFullYear(), initialDate.getMonth() + 1, 0).getDate,
+    new Date(
+      initialDate.getFullYear(),
+      initialDate.getMonth() + 1,
+      0,
+    ).getDate(),
   );
   const lastDate = Number(lastDateString);
 
   return {month, year, startDate, firstDOW, lastDate};
 }
 
-export type MonthYear = {
+type MonthYear = {
   month: number;
   year: number;
   startDate: Date;
@@ -47,11 +51,21 @@ export type MonthYear = {
   lastDate: number;
 };
 
-function getNewMonthYear(prevDate: MonthYear, increment: number) {
+function getNewMonthYear(prevData: MonthYear, increment: number) {
   const newMonthYear = new Date(
-    prevDate.startDate.setMonth(prevDate.startDate.getMonth() + increment),
+    prevData.startDate.setMonth(prevData.startDate.getMonth() + increment),
   );
+
   return getMonthYearDetails(newMonthYear);
+}
+
+function isSameAsCurrentDate(year: number, month: number, date: number) {
+  const currentDate = getDateWithSeparator(new Date());
+  const inputDate = `${year}${String(month).padStart(2, '0')}${String(
+    date,
+  ).padStart(2, '0')}`;
+
+  return currentDate === inputDate;
 }
 
 export {
@@ -59,4 +73,6 @@ export {
   getDateLocaleFormat,
   getMonthYearDetails,
   getNewMonthYear,
+  isSameAsCurrentDate,
 };
+export type {MonthYear};
