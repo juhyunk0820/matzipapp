@@ -93,7 +93,7 @@ function FeedTabNavigator() {
       <Tab.Screen
         name={feedTabNavigations.FEED_FAVORITE}
         component={FeedFavoriteScreen}
-        options={({navigation}) => ({
+        options={({navigation}: any) => ({
           headerTitle: '즐겨찾기',
           headerLeft: () => FeedHomeHeaderLeft(navigation),
         })}
