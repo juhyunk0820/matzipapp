@@ -56,7 +56,14 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
           alignItems: 'flex-end',
           padding: 10,
         }}>
-        <Text>로그아웃</Text>
+        <Text
+          style={{
+            color: colors.BLUE_500,
+            fontSize: 16,
+            fontWeight: '400',
+          }}>
+          로그아웃
+        </Text>
       </Pressable>
     </SafeAreaView>
   );
