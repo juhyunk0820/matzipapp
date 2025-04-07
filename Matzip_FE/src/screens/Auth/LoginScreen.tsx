@@ -75,6 +75,8 @@ import CustomButton from '@/components/common/CustomButton';
 import useForm from '@/hooks/useForm';
 import useAuth from '@/hooks/queries/useAuth';
 import {validateLogin} from '@/utils';
+import Toast from 'react-native-toast-message';
+import {errorMessages} from '@/constants';
 
 function LoginScreen() {
   const {loginMutation} = useAuth();
@@ -85,7 +87,23 @@ function LoginScreen() {
   });
 
   const handleSubmit = () => {
-    loginMutation.mutate(login.values);
+    loginMutation.mutate(login.values, {
+      onSuccess: () =>
+        Toast.show({
+          type: 'success',
+          text1: '환영합니다!',
+          text2: `${login.values.email}님 어서오세요!`,
+          position: 'top',
+          visibilityTime: 2000,
+        }),
+      onError: error =>
+        Toast.show({
+          type: 'error',
+          text1: error.response?.data.message || errorMessages.UNEXPECT_ERROR,
+          position: 'bottom',
+          visibilityTime: 2000,
+        }),
+    });
   };
 
   return (
