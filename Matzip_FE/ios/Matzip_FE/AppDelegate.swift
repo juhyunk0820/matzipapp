@@ -5,7 +5,7 @@ import ReactAppDependencyProvider
 import GoogleMaps //import 추가
 
 @main
-class AppDelegate: RCTAppDelegate {
+  class AppDelegate: RCTAppDelegate {
   override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     GMSServices.provideAPIKey("AIzaSyAYYhxz8PvPSi8C25VAa7yOwhHrCAZR0zU")  //googlemaps key 추가
     
