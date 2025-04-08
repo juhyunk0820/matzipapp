@@ -10,7 +10,7 @@ import Toast from 'react-native-toast-message';
 import {errorMessages} from '@/constants';
 
 function SignupScreen() {
-  const {signupMutation, loginMutation} = useAuth();
+  const {signupMutation, emailLoginMutation} = useAuth();
   const passwordRef = useRef<TextInput | null>(null);
   const passwordConfirmRef = useRef<TextInput | null>(null);
   const signup = useForm({
@@ -23,7 +23,7 @@ function SignupScreen() {
     signupMutation.mutate(
       {email, password},
       {
-        onSuccess: () => loginMutation.mutate({email, password}),
+        onSuccess: () => emailLoginMutation.mutate({email, password}),
         onError: error =>
           Toast.show({
             type: 'error',
