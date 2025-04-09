@@ -69,6 +69,17 @@ const logout = async () => {
   await axiosInstance.post('/auth/logout');
 };
 
+type RequestProfile = Omit<
+  Profile,
+  'id' | 'email' | 'kakaoImageUri' | 'loginType'
+>;
+
+const editProfile = async (body: RequestProfile): Promise<ResponseProfile> => {
+  const {data} = await axiosInstance.patch('/auth/me', body);
+
+  return data;
+};
+
 export {
   postSignup,
   postLogin,
@@ -77,5 +88,6 @@ export {
   logout,
   kakaoLogin,
   appleLogin,
+  editProfile,
 };
-export type {RequestUser, ResponseToken, ResponseProfile};
+export type {RequestUser, ResponseToken, ResponseProfile, RequestProfile};
