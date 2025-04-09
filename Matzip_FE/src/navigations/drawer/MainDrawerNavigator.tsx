@@ -112,7 +112,9 @@ function MainDrawerNavigator() {
         component={SettingStackNavigator}
         options={({navigation}: any) => ({
           title: '설정',
-          drawerItemStyle: {},
+          drawerItemStyle: {
+            height: 0,
+          },
           headerLeft: () => SettingHeaderLeft(navigation),
         })}
       />
