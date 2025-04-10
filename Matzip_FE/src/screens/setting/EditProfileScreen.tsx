@@ -14,7 +14,7 @@ import {
 import InputField from '@/components/common/InputField';
 import useImagePicker from '@/hooks/useImagePicker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {colors, errorMessages} from '@/constants';
+import {colors, errorMessages, settingNavigations} from '@/constants';
 import useModal from '@/hooks/useModal';
 import EditProfileImageOption from '@/components/setting/EditProfileImageOption';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -117,7 +117,9 @@ function EditProfileScreen({navigation}: EditProfileScreenProps) {
         touched={editProfile.touched.nickname}
         placeholder="닉네임을 입력해주세요."
       />
-      <Pressable style={styles.deleteAccountContainer}>
+      <Pressable
+        style={styles.deleteAccountContainer}
+        onPress={() => navigation.navigate(settingNavigations.DELETE_ACCOUNT)}>
         <Ionicons name="remove-circle-sharp" size={20} color={colors.RED_500} />
         <Text style={styles.deleteAccountText}>회원탈퇴</Text>
       </Pressable>
