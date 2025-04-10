@@ -1,5 +1,7 @@
 import SettingHeaderLeft from '@/components/setting/SettingHeaderLeft';
 import {colors, settingNavigations} from '@/constants';
+import DeleteAccountScreen from '@/screens/setting/DeleteAccountScreen';
+import EditCategoryScreen from '@/screens/setting/EditCategoryScreen';
 import EditProfileScreen from '@/screens/setting/EditProfileScreen';
 import SettingHomeScreen from '@/screens/setting/SettingHomeScreen';
 import {useNavigation} from '@react-navigation/native';
@@ -9,6 +11,8 @@ import React from 'react';
 export type SettingStackParamList = {
   [settingNavigations.SETTING_HOME]: undefined;
   [settingNavigations.EDIT_PROFILE]: undefined;
+  [settingNavigations.DELETE_ACCOUNT]: undefined;
+  [settingNavigations.EDIT_CATEGORY]: undefined;
 };
 
 const Stack = createStackNavigator<SettingStackParamList>();
@@ -42,6 +46,22 @@ function SettingStackNavigator() {
         component={EditProfileScreen}
         options={{
           headerTitle: '프로필 수정',
+          cardStyle: {backgroundColor: 'white'},
+        }}
+      />
+      <Stack.Screen
+        name={settingNavigations.DELETE_ACCOUNT}
+        component={DeleteAccountScreen}
+        options={{
+          headerTitle: '회원탈퇴',
+          cardStyle: {backgroundColor: 'white'},
+        }}
+      />
+      <Stack.Screen
+        name={settingNavigations.EDIT_CATEGORY}
+        component={EditCategoryScreen}
+        options={{
+          headerTitle: '카테고리 설정',
           cardStyle: {backgroundColor: 'white'},
         }}
       />
