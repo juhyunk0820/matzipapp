@@ -1,3 +1,5 @@
+import {Category} from '@/types';
+
 function isBlank(value: string) {
   return value.trim() === '';
 }
@@ -58,4 +60,22 @@ function validateEditProfile(values: {nickname: string}) {
   return errors;
 }
 
-export {validateLogin, validateSignup, validateAddPost, validateEditProfile};
+function validateCategory(values: Category) {
+  const errors = {
+    RED: '',
+    BLUE: '',
+    GREEN: '',
+    YELLOW: '',
+    PURPLE: '',
+  };
+
+  return errors;
+}
+
+export {
+  validateLogin,
+  validateSignup,
+  validateAddPost,
+  validateEditProfile,
+  validateCategory,
+};
