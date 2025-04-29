@@ -20,6 +20,7 @@ import SettingStackNavigator, {
   SettingStackParamList,
 } from '../stack/SettingStackNavigator';
 import SettingHeaderLeft from '@/components/setting/SettingHeaderLeft';
+import useThemeStore from '@/store/useThemeStore';
 
 type Nav = NavigationProp<MainDrawerParamList>;
 
@@ -33,6 +34,7 @@ export type MainDrawerParamList = {
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
 function DrawerIcons(route: RouteProp<MainDrawerParamList>, focused: boolean) {
+  const {theme} = useThemeStore();
   let iconName = '';
 
   switch (route.name) {
@@ -57,13 +59,14 @@ function DrawerIcons(route: RouteProp<MainDrawerParamList>, focused: boolean) {
   return (
     <MaterialIcons
       name={iconName}
-      color={focused ? colors.BLACK : colors.GRAY_500}
+      color={focused ? colors[theme].BLACK : colors[theme].GRAY_500}
       size={18}
     />
   );
 }
 
 function MainDrawerNavigator() {
+  const {theme} = useThemeStore();
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawerContent}
@@ -72,12 +75,12 @@ function MainDrawerNavigator() {
         drawerType: 'front',
         drawerStyle: {
           width: Dimensions.get('screen').width * 0.6,
-          backgroundColor: colors.WHITE,
+          backgroundColor: colors[theme].WHITE,
         },
-        drawerActiveTintColor: colors.BLACK,
-        drawerInactiveTintColor: colors.GRAY_500,
-        drawerActiveBackgroundColor: colors.PINK_200,
-        drawerInactiveBackgroundColor: colors.GRAY_100,
+        drawerActiveTintColor: colors[theme].BLACK,
+        drawerInactiveTintColor: colors[theme].GRAY_500,
+        drawerActiveBackgroundColor: colors[theme].PINK_200,
+        drawerInactiveBackgroundColor: colors[theme].GRAY_100,
         drawerLabelStyle: {
           fontWeight: '600',
         },

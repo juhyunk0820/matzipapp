@@ -20,6 +20,8 @@ import {authNavigations, colors} from '@/constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import useAuth from '@/hooks/queries/useAuth';
 import Toast from 'react-native-toast-message';
+import useThemeStore from '@/store/useThemeStore';
+import {ThemeMode} from '@/types';
 
 type AuthHomeScreenProps = StackScreenProps<
   AuthStackParamList,
@@ -27,6 +29,8 @@ type AuthHomeScreenProps = StackScreenProps<
 >;
 
 function AuthHomeScreen({navigation}: AuthHomeScreenProps) {
+  const {theme} = useThemeStore();
+  const styles = styling(theme);
   const {appleLoginMutation} = useAuth();
   const handlePressAppleLogin = async () => {
     try {
@@ -97,38 +101,39 @@ function AuthHomeScreen({navigation}: AuthHomeScreenProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    marginHorizontal: 30,
-    marginVertical: 30,
-  },
-  imageContainer: {
-    flex: 1.5,
-    width: Dimensions.get('screen').width / 2,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  buttonContainer: {
-    flex: 1,
-    alignItems: 'center',
-    gap: 10,
-  },
-  kakaoButtonContainer: {
-    backgroundColor: '#fee503',
-  },
-  kakaoButtonText: {
-    color: '#181600',
-  },
-  emailText: {
-    textDecorationLine: 'underline',
-    fontWeight: '500',
-    padding: 10,
-    color: colors.BLACK,
-  },
-});
+const styling = (theme: ThemeMode) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      marginHorizontal: 30,
+      marginVertical: 30,
+    },
+    imageContainer: {
+      flex: 1.5,
+      width: Dimensions.get('screen').width / 2,
+    },
+    image: {
+      width: '100%',
+      height: '100%',
+    },
+    buttonContainer: {
+      flex: 1,
+      alignItems: 'center',
+      gap: 10,
+    },
+    kakaoButtonContainer: {
+      backgroundColor: '#fee503',
+    },
+    kakaoButtonText: {
+      color: '#181600',
+    },
+    emailText: {
+      textDecorationLine: 'underline',
+      fontWeight: '500',
+      padding: 10,
+      color: colors[theme].BLACK,
+    },
+  });
 
 export default AuthHomeScreen;
