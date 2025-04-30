@@ -16,7 +16,19 @@ import GoogleMaps //import 추가
     // They will be passed down to the ViewController used by React Native.
     self.initialProps = [:]
 
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    // RCTAppDelegate 내부에서 창과 rootView를 만든 뒤
+    // 스플래시를 띄워야 하므로 먼저 super 호출
+    let ok = super.application(
+      application,
+      didFinishLaunchingWithOptions: launchOptions
+    )
+
+    // 네이티브 스플래시 화면 표시
+    RNSplashScreen.show()
+
+    return ok
+
+    // return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
   override func sourceURL(for bridge: RCTBridge) -> URL? {
