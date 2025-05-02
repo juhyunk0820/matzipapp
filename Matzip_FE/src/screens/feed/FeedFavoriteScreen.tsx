@@ -1,10 +1,15 @@
-import FeedFavoriteList from '@/components/feed/FeedFavoriteList';
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, {Suspense} from 'react';
+import {StyleSheet, SafeAreaView, Text} from 'react-native';
 
-interface FeedFavoriteScreenProps {}
+import {colors} from '@/constants';
+import FeedFavoriteList from '@/components/feed/FeedFavoriteList';
+import {ThemeMode} from '@/types';
+import useThemeStore from '@/store/useThemeStore';
 
 function FeedFavoriteScreen() {
+  const {theme} = useThemeStore();
+  const styles = styling(theme);
+
   return (
     <SafeAreaView style={styles.container}>
       <FeedFavoriteList />
@@ -12,8 +17,11 @@ function FeedFavoriteScreen() {
   );
 }
 
+const styling = (theme: ThemeMode) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors[theme].WHITE,
+    },
+  });
 export default FeedFavoriteScreen;
-
-const styles = StyleSheet.create({
-  container: {},
-});
