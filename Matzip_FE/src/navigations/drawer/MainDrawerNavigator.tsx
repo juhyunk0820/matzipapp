@@ -107,6 +107,17 @@ function MainDrawerNavigator() {
         options={({navigation}: any) => ({
           title: '캘린더',
           headerShown: true,
+          cardStyle: {
+            backgroundColor: colors[theme].GRAY_100,
+          },
+          headerStyle: {
+            shadowColor: 'gray',
+            backgroundColor: colors[theme].WHITE,
+          },
+          headerTitleStyle: {
+            fontSize: 15,
+          },
+          headerTintColor: colors[theme].BLACK,
           headerLeft: () => FeedHomeHeaderLeft(navigation),
         })}
       />
