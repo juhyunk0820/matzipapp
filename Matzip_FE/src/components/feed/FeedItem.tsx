@@ -9,27 +9,37 @@ import {
   View,
 } from 'react-native';
 import {ResponsePost} from '@/api';
-import {colors, feedNavigations} from '@/constants';
+import {colors, feedNavigations, feedTabNavigations} from '@/constants';
 import {getDateWithSeparator} from '@/utils';
-import {useNavigation} from '@react-navigation/native';
+import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {FeedStackParamList} from '@/navigations/stack/FeedStackNavigator';
 import useThemeStore from '@/store/useThemeStore';
 import {ThemeMode} from '@/types';
+import {FeedTabParamList} from '@/navigations/tab/FeedTabNavigator';
+import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 
 interface FeedItemProps {
   post: ResponsePost;
 }
 
-type Navigation = StackNavigationProp<FeedStackParamList>;
+// type Navigation = StackNavigationProp<FeedStackParamList>;
+
+type TabNav = BottomTabNavigationProp<FeedTabParamList, 'FeedFavorite'>;
+type StackNav = StackNavigationProp<FeedStackParamList>;
+type NavProp = CompositeNavigationProp<TabNav, StackNav>;
 
 function FeedItem({post}: FeedItemProps) {
   const {theme} = useThemeStore();
   const styles = styling(theme);
-  const navigation = useNavigation<Navigation>();
+  const navigation = useNavigation<NavProp>();
 
   const handlePressFeedHandler = () => {
-    navigation.navigate(feedNavigations.FEED_DETAIL, {id: post.id});
+    navigation.navigate(feedTabNavigations.FEED_HOME, {
+      screen: feedNavigations.FEED_DETAIL,
+      params: {id: post.id},
+      initial: false,
+    });
   };
   return (
     <Pressable style={styles.container} onPress={handlePressFeedHandler}>
