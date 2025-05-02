@@ -98,6 +98,17 @@ function FeedTabNavigator() {
         component={FeedFavoriteScreen}
         options={({navigation}: any) => ({
           headerTitle: '즐겨찾기',
+          cardStyle: {
+            backgroundColor: colors[theme].GRAY_100,
+          },
+          headerStyle: {
+            shadowColor: 'gray',
+            backgroundColor: colors[theme].WHITE,
+          },
+          headerTitleStyle: {
+            fontSize: 15,
+          },
+          headerTintColor: colors[theme].BLACK,
           headerLeft: () => FeedHomeHeaderLeft(navigation),
         })}
       />
