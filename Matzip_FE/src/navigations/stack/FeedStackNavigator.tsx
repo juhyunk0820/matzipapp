@@ -25,16 +25,16 @@ function FeedStackNavigator() {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          backgroundColor: 'white',
+          backgroundColor: colors[theme].GRAY_100,
         },
         headerStyle: {
           shadowColor: 'gray',
-          backgroundColor: 'white',
+          backgroundColor: colors[theme].WHITE,
         },
         headerTitleStyle: {
           fontSize: 15,
         },
-        headerTintColor: 'black',
+        headerTintColor: colors[theme].BLACK,
       }}>
       <Stack.Screen
         name={feedNavigations.FEED_HOME}
