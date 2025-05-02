@@ -48,7 +48,9 @@ function SettingStackNavigator() {
         component={EditProfileScreen}
         options={{
           headerTitle: '프로필 수정',
-          cardStyle: {backgroundColor: 'white'},
+          cardStyle: {
+            backgroundColor: colors[theme].WHITE,
+          },
         }}
       />
       <Stack.Screen
@@ -56,7 +58,9 @@ function SettingStackNavigator() {
         component={DeleteAccountScreen}
         options={{
           headerTitle: '회원탈퇴',
-          cardStyle: {backgroundColor: 'white'},
+          cardStyle: {
+            backgroundColor: colors[theme].WHITE,
+          },
         }}
       />
       <Stack.Screen
@@ -64,7 +68,9 @@ function SettingStackNavigator() {
         component={EditCategoryScreen}
         options={{
           headerTitle: '카테고리 설정',
-          cardStyle: {backgroundColor: 'white'},
+          cardStyle: {
+            backgroundColor: colors[theme].WHITE,
+          },
         }}
       />
     </Stack.Navigator>
