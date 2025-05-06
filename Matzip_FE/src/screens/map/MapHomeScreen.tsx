@@ -29,6 +29,8 @@ import Toast from 'react-native-toast-message';
 import useLocationStore from '@/store/useLocationStore';
 import useThemeStore from '@/store/useThemeStore';
 import {ThemeMode} from '@/types';
+import useLegendStorage from '@/hooks/useLegendStorage';
+import MapLegend from '@/components/map/MapLegend';
 
 type Navigation = CompositeNavigationProp<
   StackNavigationProp<MapStackParamList>,
@@ -46,6 +48,8 @@ function MapHomeScreen() {
   const markerModal = useModal();
   const {data: markers = []} = useGetMarkers();
   const {mapRef, moveMapView, handleChangeDelta} = useMoveMapView();
+  const legend = useLegendStorage();
+
   usePermission('LOCATION');
 
   const handlePressMarker = (id: number, coordinate: LatLng) => {
@@ -148,6 +152,7 @@ function MapHomeScreen() {
         isVisible={markerModal.isVisible}
         hide={markerModal.hide}
       />
+      {/* {legend.isVisible && <MapLegend />} */}
     </>
   );
 }
